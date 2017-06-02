@@ -742,7 +742,6 @@ Custom property | Description | Default
         },
         _activeMonth: {
           type: Number,
-          notify: true,
           value: function () {
             return new Date().getMonth();
           }
@@ -1007,6 +1006,7 @@ Custom property | Description | Default
             year: 'numeric'
           }).format(new Date(_activeYear, _activeMonth, 1));
           this.set('_activeMonthYear', _amy);
+          this.fire('_activeMonthYear',_amy);
         }
       },
       // Re-compute short version of full date to show on the picker.
