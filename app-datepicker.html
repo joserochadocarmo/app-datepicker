@@ -742,6 +742,7 @@ Custom property | Description | Default
         },
         _activeMonth: {
           type: Number,
+          notify: true,
           value: function () {
             return new Date().getMonth();
           }
