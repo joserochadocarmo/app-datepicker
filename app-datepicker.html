@@ -514,6 +514,26 @@ Custom property | Description | Default
         color: var(--app-datepicker-button-color, #DA4336);
         --paper-button-ink-color: var(--app-datepicker-button-ink-color, #616161);
       }
+      
+      .event-dot {
+        margin: 3px 13px;
+        width: 5px;
+        height: 5px;
+        display: block;
+        border-radius: 50%;
+        background-color: var(--paper-calendar-event-background, rgb(255, 152, 0));
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      @media (max-width: 600px) {
+        .event-dot {
+          margin: 4px 15px;          
+        }
+      }
+
 
     </style>
 
@@ -549,6 +569,7 @@ Custom property | Description | Default
             <template is="dom-repeat" items="[[_daysOfMonth]]" index-as="index" strip-whitespace>
               <div class$="each-days-of-month[[_isToday(item.index, _activeYear, _activeMonth)]][[_isEmptyDate(item.index)]][[_isChosenDaysOfMonth(item.index, _selectedYear, _selectedMonth, _selectedDate)]][[_isDisableDays(index, firstDayOfWeek, minDate, maxDate, item.index, _shiftedDisableDays.*, disableDates.*)]]" index="[[index]]" date="[[item.index]]" tabindex$="[[_shouldTabIndex(index, firstDayOfWeek, minDate, maxDate, item.index, _shiftedDisableDays.*, disableDates.*)]]" aria-disabled$="[[_shouldAriaDisabled(index, firstDayOfWeek, minDate, maxDate, item.index, _shiftedDisableDays.*, disableDates.*)]]" aria-label$=[[item.index]]>
                 [[item.date]]
+                <span class="event-dot"></span>
               </div>
             </template>
           </div>
