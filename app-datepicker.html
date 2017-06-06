@@ -108,7 +108,7 @@ Custom property | Description | Default
 <dom-module id="app-datepicker">
   <template strip-whitespace>
     <style>
-      :host {
+       :host {
         display: block;
         position: relative;
         box-sizing: border-box;
@@ -134,6 +134,7 @@ Custom property | Description | Default
 
         @apply --layout-vertical;
       }
+
       div.datepicker.with-buttons {
         height: 431px;
         max-height: 431px;
@@ -147,10 +148,12 @@ Custom property | Description | Default
 
         @apply --layout-vertical;
       }
+
       div.selected-year.iron-selected,
       div.selected-date.iron-selected {
         color: var(--app-datepicker-iron-selected, #fefefe);
       }
+
       div.selected-year {
         font-size: 14px;
         font-weight: 800;
@@ -160,6 +163,7 @@ Custom property | Description | Default
         @apply --layout-center;
         @apply --app-datepicker-selected-year;
       }
+
       div.selected-date {
         font-size: 32px;
         font-weight: 800;
@@ -169,8 +173,9 @@ Custom property | Description | Default
         @apply --layout-flex-auto;
         @apply --app-datepicker-selected-date;
       }
+
       div.selected-year:hover,
-      div.selected-date > div:hover {
+      div.selected-date>div:hover {
         cursor: pointer;
       }
 
@@ -183,6 +188,7 @@ Custom property | Description | Default
 
         @apply --layout-vertical;
       }
+
       div.navigator {
         max-height: 46px;
         padding: 3px 10px;
@@ -192,6 +198,7 @@ Custom property | Description | Default
         @apply --layout-horizontal;
         @apply --layout-center-center;
       }
+
       div.nav-month-year {
         font-size: 14px;
         font-weight: 500;
@@ -200,6 +207,7 @@ Custom property | Description | Default
         @apply --layout-flex-auto;
         @apply --app-datepicker-nav-month-year;
       }
+
       div.days-of-week {
         color: var(--app-datepicker-weekdays-color, #848484);
         font-size: 12px;
@@ -207,6 +215,7 @@ Custom property | Description | Default
         @apply --layout-center-center;
         @apply --app-datepicker-days-of-week;
       }
+
       div.each-days-of-week {
         padding: 13px;
         max-height: 32px;
@@ -214,6 +223,7 @@ Custom property | Description | Default
         @apply --layout-horizontal;
         @apply --layout-center-center;
       }
+
       div.days-of-month {
         font-size: 13px;
         @apply --layout-horizontal;
@@ -221,6 +231,7 @@ Custom property | Description | Default
         @apply --layout-center-justified;
         @apply --app-datepicker-days-of-month;
       }
+
       div.each-days-of-month {
         height: 35px;
         width: 35px;
@@ -230,48 +241,54 @@ Custom property | Description | Default
         @apply --layout-horizontal;
         @apply --layout-center-center;
       }
-      div > div.days-of-month > div.each-days-of-month.chosen-days-of-month {
+
+      div>div.days-of-month>div.each-days-of-month.chosen-days-of-month {
         border-radius: 50%;
         background-color: var(--app-datepicker-selected-day-bg, #009688);
         color: var(--app-datepicker-selected-day-color, #fff);
       }
-      div.days-of-month > div.each-days-of-month.is-today {
+
+      div.days-of-month>div.each-days-of-month.is-today {
         color: var(--app-datepicker-today-color, #009688);
       }
-      div.days-of-month > .each-days-of-month.is-disabled-day {
+
+      div.days-of-month>.each-days-of-month.is-disabled-day {
         color: var(--app-datepicker-disabled-color, #9e9e9e);
       }
-
-
       /* outline: none for non-selectable and disabled days */
-      div.days-of-month > .each-days-of-month.is-disabled-day,
-      div.days-of-month > .each-days-of-month.is-non-selectable {
+
+      div.days-of-month>.each-days-of-month.is-disabled-day,
+      div.days-of-month>.each-days-of-month.is-non-selectable {
         outline: none;
       }
       /* Date hover styling */
-      div.days-of-month > div.each-days-of-month:hover:not(.is-disabled-day):not(.is-non-selectable):not(.chosen-days-of-month),
-      div.days-of-month > div.each-days-of-month:focus:not(.is-disabled-day):not(.is-non-selectable):not(.chosen-days-of-month) {
+
+      div.days-of-month>div.each-days-of-month:hover:not(.is-disabled-day):not(.is-non-selectable):not(.chosen-days-of-month),
+      div.days-of-month>div.each-days-of-month:focus:not(.is-disabled-day):not(.is-non-selectable):not(.chosen-days-of-month) {
         color: var(--app-datepicker-date-hover-color, #f5f5f5);
         background-color: var(--app-datepicker-date-hover-background-color, #80cbc4);
         border-radius: 50%;
         cursor: pointer;
       }
-      :host(.dark-theme) div.days-of-month >  div.each-days-of-month:hover:not(.is-disabled-day):not(.is-non-selectable):not(.chosen-days-of-month),
-      :host(.dark-theme) div.days-of-month >  div.each-days-of-month:focus:not(.is-disabled-day):not(.is-non-selectable):not(.chosen-days-of-month) {
+
+       :host(.dark-theme) div.days-of-month>div.each-days-of-month:hover:not(.is-disabled-day):not(.is-non-selectable):not(.chosen-days-of-month),
+       :host(.dark-theme) div.days-of-month>div.each-days-of-month:focus:not(.is-disabled-day):not(.is-non-selectable):not(.chosen-days-of-month) {
         color: var(--app-datepicker-date-hover-color, #777);
         background-color: var(--app-datepicker-date-hover-background-color, #b2dfdb);
       }
-      :host(.goog-theme) div.days-of-month > div.each-days-of-month:hover:not(.is-disabled-day):not(.is-non-selectable):not(.chosen-days-of-month),
-      :host(.goog-theme) div.days-of-month > div.each-days-of-month:focus:not(.is-disabled-day):not(.is-non-selectable):not(.chosen-days-of-month) {
+
+       :host(.goog-theme) div.days-of-month>div.each-days-of-month:hover:not(.is-disabled-day):not(.is-non-selectable):not(.chosen-days-of-month),
+       :host(.goog-theme) div.days-of-month>div.each-days-of-month:focus:not(.is-disabled-day):not(.is-non-selectable):not(.chosen-days-of-month) {
         color: var(--app-datepicker-date-hover-color, #f5f5f5);
         background-color: var(--app-datepicker-date-hover-background-color, #e57373);
       }
-
       /* Focus ring styling - replace outline with background-color */
+
       div.each-list-of-years:focus,
       div.each-days-of-month:focus {
         outline: 0;
       }
+
       div.each-list-of-years:focus,
       div.each-list-of-years:hover,
       div.each-list-of-years.is-selected:focus,
@@ -280,18 +297,20 @@ Custom property | Description | Default
         background-color: var(--app-datepicker-year-hover-background-color, #e0e0e0);
         @apply --app-datepicker-year-hover;
       }
-      :host(.dark-theme) div.each-list-of-years:focus,
-      :host(.dark-theme) div.each-list-of-years:hover,
-      :host(.dark-theme) div.each-list-of-years.is-selected:focus,
-      :host(.dark-theme) div.each-list-of-years.is-selected:hover {
+
+       :host(.dark-theme) div.each-list-of-years:focus,
+       :host(.dark-theme) div.each-list-of-years:hover,
+       :host(.dark-theme) div.each-list-of-years.is-selected:focus,
+       :host(.dark-theme) div.each-list-of-years.is-selected:hover {
         font-weight: 700;
         background-color: var(--app-datepicker-year-hover-background-color, #616161);
         @apply --app-datepicker-year-hover;
       }
-      :host(.goog-theme) div.each-list-of-years:focus,
-      :host(.goog-theme) div.each-list-of-years:hover,
-      :host(.goog-theme) div.each-list-of-years.is-selected:focus,
-      :host(.goog-theme) div.each-list-of-years.is-selected:hover {
+
+       :host(.goog-theme) div.each-list-of-years:focus,
+       :host(.goog-theme) div.each-list-of-years:hover,
+       :host(.goog-theme) div.each-list-of-years.is-selected:focus,
+       :host(.goog-theme) div.each-list-of-years.is-selected:hover {
         font-weight: 700;
         background-color: var(--app-datepicker-year-hover-background-color, #424242);
         @apply --app-datepicker-year-hover;
@@ -304,9 +323,11 @@ Custom property | Description | Default
         @apply --layout-center-center;
         @apply --app-datepicker-each-list-of-years;
       }
+
       div.each-list-of-years:hover {
         cursor: pointer;
       }
+
       div.each-list-of-years.is-selected {
         font-size: 24px;
         font-weight: 700;
@@ -315,14 +336,14 @@ Custom property | Description | Default
 
         @apply --app-datepicker-selected-each-list-of-years;
       }
-
       /* paper-icon-button */
+
       paper-icon-button {
         color: var(--app-datepicker-icon-button-color, #737373);
         --paper-icon-button-ink-color: var(--app-datepicker-icon-button-ink-color, #737373);
       }
-
       /* content tag selector */
+
       .buttons {
         color: var(--app-datepicker-button-color, #009688);
         --paper-button-ink-color: var(--app-datepicker-button-ink-color, #737373);
@@ -335,16 +356,16 @@ Custom property | Description | Default
         @apply --layout-end-justified;
         @apply --app-datepicker-buttons;
       }
-
       /* will-change: transform, however lag on the first time */
+
       div.nav-month-year,
       div.days-of-week,
       div.days-of-month {
         will-change: transform;
         -webkit-transform: translate3d(0px, 0px, 0px);
-                transform: translate3d(0px, 0px, 0px);
+        transform: translate3d(0px, 0px, 0px);
         -webkit-backface-visibility: hidden;
-                backface-visibility: hidden;
+        backface-visibility: hidden;
       }
 
       iron-list {
@@ -353,71 +374,72 @@ Custom property | Description | Default
           transform: translate3d(0px, 0px, 0px);
           -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-        };
+        }
+        ;
       }
-
       /* landscape */
+
       @media all and (orientation: landscape) {
-        :host(.horizontal-view) div#dp.datepicker,
-        :host(:not(.vertical-view)) div#dp.datepicker {
+         :host(.horizontal-view) div#dp.datepicker,
+         :host(:not(.vertical-view)) div#dp.datepicker {
           width: 512px;
           height: 241px;
           @apply --layout-horizontal;
         }
-        :host(.horizontal-view) div#dp.datepicker.with-buttons,
-        :host(:not(.vertical-view)) div#dp.datepicker.with-buttons {
+         :host(.horizontal-view) div#dp.datepicker.with-buttons,
+         :host(:not(.vertical-view)) div#dp.datepicker.with-buttons {
           height: 288px;
         }
-        :host(.horizontal-view) iron-selector.selected-fulldate,
-        :host(:not(.vertical-view)) iron-selector.selected-fulldate {
+         :host(.horizontal-view) iron-selector.selected-fulldate,
+         :host(:not(.vertical-view)) iron-selector.selected-fulldate {
           /* Fixed for IE11, Edge */
           min-width: 164px;
           width: calc(100% / 3 + 48px);
           max-width: 164px;
           height: 100%;
         }
-        :host(:not(.vertical-view)) div.selected-date {
+         :host(:not(.vertical-view)) div.selected-date {
           @apply --layout-vertical;
           @apply --layout-start;
           @apply --layout-start-justified;
         }
         /* Fix for IE11 */
-        :host(:not(.vertical-view)) div.selected-date > div {
+         :host(:not(.vertical-view)) div.selected-date>div {
           width: 100%;
           word-wrap: break-word;
         }
         /* Hack for Edge 12+ */
         @supports (-ms-accelerator:true) {
-          :host(:not(.vertical-view)) div.selected-date > div {
+           :host(:not(.vertical-view)) div.selected-date>div {
             white-space: pre-wrap;
           }
         }
 
-        :host(.horizontal-view) neon-animated-pages.fullcalendar,
-        :host(:not(.vertical-view)) neon-animated-pages.fullcalendar {
+         :host(.horizontal-view) neon-animated-pages.fullcalendar,
+         :host(:not(.vertical-view)) neon-animated-pages.fullcalendar {
           height: 100%;
         }
-        :host(.horizontal-view) div.calendar-view,
-        :host(:not(.vertical-view)) div.calendar-view {
+         :host(.horizontal-view) div.calendar-view,
+         :host(:not(.vertical-view)) div.calendar-view {
           padding-bottom: 0;
         }
-        :host(.horizontal-view) div.navigator,
-        :host(:not(.vertical-view)) div.navigator {
+         :host(.horizontal-view) div.navigator,
+         :host(:not(.vertical-view)) div.navigator {
           padding: 2px 10px;
           margin-top: 0;
         }
-        :host(.horizontal-view) div.each-days-of-week,
-        :host(:not(.vertical-view)) div.each-days-of-week {
+         :host(.horizontal-view) div.each-days-of-week,
+         :host(:not(.vertical-view)) div.each-days-of-week {
           width: calc(100% / 7 - 20px);
           padding: 0;
           margin-left: 10px;
           margin-right: 10px;
         }
-        :host(:not(.vertical-view)) div.days-of-month {
+         :host(:not(.vertical-view)) div.days-of-month {
           margin-top: 8px;
         }
-        :host(.horizontal-view) div.each-days-of-month,
-        :host(:not(.vertical-view)) div.each-days-of-month {
+         :host(.horizontal-view) div.each-days-of-month,
+         :host(:not(.vertical-view)) div.each-days-of-month {
           height: 29px;
           margin-left: 10px;
           margin-right: 10px;
@@ -425,96 +447,115 @@ Custom property | Description | Default
         }
       }
       /* End of landscape @media */
-
       /* dark-theme */
-      :host(.dark-theme) {
+
+       :host(.dark-theme) {
         background-color: var(--app-datepicker-bg, #424242);
       }
-      :host(.dark-theme) iron-selector.selected-fulldate {
+
+       :host(.dark-theme) iron-selector.selected-fulldate {
         color: var(--app-datepicker-selection-color, #9e9e9e);
         background-color: var(--app-datepicker-selection-bg, #555);
       }
-      :host(.dark-theme) div.selected-year.iron-selected,
-      :host(.dark-theme) div.selected-date.iron-selected {
+
+       :host(.dark-theme) div.selected-year.iron-selected,
+       :host(.dark-theme) div.selected-date.iron-selected {
         color: var(--app-datepicker-iron-selected, #f5f5f5);
       }
-      :host(.dark-theme) neon-animated-pages.fullcalendar {
+
+       :host(.dark-theme) neon-animated-pages.fullcalendar {
         color: var(--app-datepicker-calendar-color, #f5f5f5);
         background-color: var(--app-datepicker-calendar-bg, #424242);
       }
-      :host(.dark-theme) div.days-of-week {
+
+       :host(.dark-theme) div.days-of-week {
         color: var(--app-datepicker-weekdays-color, #7c7c7c);
       }
-      :host(.dark-theme) div > div.days-of-month > div.each-days-of-month.chosen-days-of-month {
+
+       :host(.dark-theme) div>div.days-of-month>div.each-days-of-month.chosen-days-of-month {
         color: var(--app-datepicker-selected-day-color, #555);
         background-color: var(--app-datepicker-selected-day-bg, #80cbc4);
       }
-      :host(.dark-theme) div.days-of-month > div.each-days-of-month.is-today {
+
+       :host(.dark-theme) div.days-of-month>div.each-days-of-month.is-today {
         color: var(--app-datepicker-today-color, #80cbc4);
       }
-      :host(.dark-theme) div.days-of-month > .each-days-of-month.is-disabled-day {
+
+       :host(.dark-theme) div.days-of-month>.each-days-of-month.is-disabled-day {
         color: var(--app-datepicker-disabled-color, #ffff00);
       }
-      :host(.dark-theme) div.each-list-of-years.is-selected {
+
+       :host(.dark-theme) div.each-list-of-years.is-selected {
         background-color: var(--app-datepicker-selected-year-bg, rgba(0, 0, 0, 0));
         color: var(--app-datepicker-selected-year-color, #80cbc4);
         font-size: 26px;
         font-weight: 500;
       }
-      :host(.dark-theme) paper-icon-button {
+
+       :host(.dark-theme) paper-icon-button {
         color: var(--app-datepicker-icon-button-color, #ffff00);
         --paper-icon-button-ink-color: var(--app-datepicker-icon-button-ink-color, #212121);
       }
-      :host(.dark-theme) ::slotted(paper-button) {
+
+       :host(.dark-theme) ::slotted(paper-button) {
         color: var(--app-datepicker-button-color, #80cbc4);
         --paper-button-ink-color: var(--app-datepicker-button-ink-color, #bcbcbc);
       }
-
       /* goog theme */
-      :host(.goog-theme) {
+
+       :host(.goog-theme) {
         background-color: var(--app-datepicker-bg, #212121);
       }
 
-      :host(.goog-theme) iron-selector.selected-fulldate {
+       :host(.goog-theme) iron-selector.selected-fulldate {
         color: var(--app-datepicker-selection-color, #fff);
         background-color: var(--app-datepicker-selection-bg, #212121);
       }
-      :host(.goog-theme) div.selected-year.iron-selected,
-      :host(.goog-theme) div.selected-date.iron-selected {
+
+       :host(.goog-theme) div.selected-year.iron-selected,
+       :host(.goog-theme) div.selected-date.iron-selected {
         color: var(--app-datepicker-iron-selected, #DA4336);
       }
-      :host(.goog-theme) neon-animated-pages.fullcalendar {
+
+       :host(.goog-theme) neon-animated-pages.fullcalendar {
         color: var(--app-datepicker-calendar-color, #fff);
         background-color: var(--app-datepicker-calendar-bg, #212121);
       }
-      :host(.goog-theme) div.days-of-week {
+
+       :host(.goog-theme) div.days-of-week {
         color: var(--app-datepicker-weekdays-color, #9e9e9e);
       }
-      :host(.goog-theme) div > div.days-of-month > div.each-days-of-month.chosen-days-of-month {
+
+       :host(.goog-theme) div>div.days-of-month>div.each-days-of-month.chosen-days-of-month {
         color: var(--app-datepicker-selected-day-color, #fff);
         background-color: var(--app-datepicker-selected-day-bg, #DA4336);
       }
-      :host(.goog-theme) div.days-of-month > div.each-days-of-month.is-today {
+
+       :host(.goog-theme) div.days-of-month>div.each-days-of-month.is-today {
         color: var(--app-datepicker-today-color, #DA4336);
       }
-      :host(.goog-theme) div.days-of-month > .each-days-of-month.is-disabled-day {
+
+       :host(.goog-theme) div.days-of-month>.each-days-of-month.is-disabled-day {
         color: var(--app-datepicker-disabled-color, #646464);
       }
-      :host(.goog-theme) div.each-list-of-years.is-selected {
+
+       :host(.goog-theme) div.each-list-of-years.is-selected {
         background-color: var(--app-datepicker-selected-year-bg, rgba(0, 0, 0, 0));
         color: var(--app-datepicker-selected-year-color, #DA4336);
         font-size: 26px;
         font-weight: 500;
       }
-      :host(.goog-theme) paper-icon-button {
+
+       :host(.goog-theme) paper-icon-button {
         color: var(--app-datepicker-icon-button-color, #DA4336);
         --paper-icon-button-ink-color: var(--app-datepicker-icon-button-ink-color, #616161);
       }
-      :host(.goog-theme) ::slotted(paper-button) {
+
+       :host(.goog-theme) ::slotted(paper-button) {
         color: var(--app-datepicker-button-color, #DA4336);
         --paper-button-ink-color: var(--app-datepicker-button-ink-color, #616161);
       }
-      
+
       .event-dot {
         margin: 3px 13px;
         width: 5px;
@@ -530,11 +571,9 @@ Custom property | Description | Default
 
       @media (max-width: 600px) {
         .event-dot {
-          margin: 4px 15px;          
+          margin: 4px 15px;
         }
       }
-
-
     </style>
 
     <div id="dp" class="datepicker">
@@ -547,7 +586,8 @@ Custom property | Description | Default
         </div>
       </iron-selector>
 
-      <neon-animated-pages class="fullcalendar" selected="[[_activeView]]" attr-for-selected="view" entry-animation="[[pageEntryAnimation]]" exit-animation="[[pageExitAnimation]]" on-neon-animation-finish="_onAnimationFinish">
+      <neon-animated-pages class="fullcalendar" selected="[[_activeView]]" attr-for-selected="view" entry-animation="[[pageEntryAnimation]]"
+        exit-animation="[[pageExitAnimation]]" on-neon-animation-finish="_onAnimationFinish">
         <div class="calendar-view" view="calendar">
           <div class="navigator">
             <paper-icon-button icon="datepicker:chevron-left" on-tap="_decrementMonth" noink="[[noAnimation]]"></paper-icon-button>
@@ -567,9 +607,12 @@ Custom property | Description | Default
 
           <div id="daysOfMonth" class="days-of-month" on-tap="_chooseDaysOfMonth">
             <template is="dom-repeat" items="[[_daysOfMonth]]" index-as="index" strip-whitespace>
-              <div class$="each-days-of-month[[_isToday(item.index, _activeYear, _activeMonth)]][[_isEmptyDate(item.index)]][[_isChosenDaysOfMonth(item.index, _selectedYear, _selectedMonth, _selectedDate)]][[_isDisableDays(index, firstDayOfWeek, minDate, maxDate, item.index, _shiftedDisableDays.*, disableDates.*)]]" index="[[index]]" date="[[item.index]]" tabindex$="[[_shouldTabIndex(index, firstDayOfWeek, minDate, maxDate, item.index, _shiftedDisableDays.*, disableDates.*)]]" aria-disabled$="[[_shouldAriaDisabled(index, firstDayOfWeek, minDate, maxDate, item.index, _shiftedDisableDays.*, disableDates.*)]]" aria-label$=[[item.index]]>
+              <div class$="each-days-of-month[[_isToday(item.index, _activeYear, _activeMonth)]][[_isEmptyDate(item.index)]][[_isChosenDaysOfMonth(item.index, _selectedYear, _selectedMonth, _selectedDate)]][[_isDisableDays(index, firstDayOfWeek, minDate, maxDate, item.index, _shiftedDisableDays.*, disableDates.*)]]"
+                index="[[index]]" date="[[item.index]]" tabindex$="[[_shouldTabIndex(index, firstDayOfWeek, minDate, maxDate, item.index, _shiftedDisableDays.*, disableDates.*)]]"
+                aria-disabled$="[[_shouldAriaDisabled(index, firstDayOfWeek, minDate, maxDate, item.index, _shiftedDisableDays.*, disableDates.*)]]"
+                aria-label$=[[item.index]]>
                 [[item.date]]
-                <span class="event-dot"></span>
+                <span class$="event-[[_hasEvent(item.date,_activeYear, _activeMonth,events)]]"></span>
               </div>
             </template>
           </div>
@@ -581,9 +624,11 @@ Custom property | Description | Default
         </div>
 
         <template is="dom-if" if="[[_isListRendered]]" restamp="true" strip-whitespace on-dom-change="_onListRendered">
-          <iron-list  id="listOfYears" items="[[_listOfYears]]" view="year" on-neon-animation-finish="_onAnimationFinish" selected-item="{{_selectedListItem}}" selection-enabled>
+          <iron-list id="listOfYears" items="[[_listOfYears]]" view="year" on-neon-animation-finish="_onAnimationFinish" selected-item="{{_selectedListItem}}"
+            selection-enabled>
             <template>
-              <div class$="each-list-of-years[[_isListOfYearsSelected(selected)]]" tabindex$="[[tabIndex]]" aria-label$="[[item.year]]" label$="[[item.year]]" on-tap="_goCalendar" on-keydown="_goCalendar">
+              <div class$="each-list-of-years[[_isListOfYearsSelected(selected)]]" tabindex$="[[tabIndex]]" aria-label$="[[item.year]]"
+                label$="[[item.year]]" on-tap="_goCalendar" on-keydown="_goCalendar">
                 [[item.year]]
               </div>
             </template>
@@ -652,7 +697,7 @@ Custom property | Description | Default
          */
         disableDates: {
           type: Array,
-          value: function() {
+          value: function () {
             return [];
           }
         },
@@ -733,8 +778,8 @@ Custom property | Description | Default
         _monthNames: {
           type: Array,
           value: function () {
-            return [ 'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December' ];
+            return ['January', 'February', 'March', 'April', 'May', 'June',
+              'July', 'August', 'September', 'October', 'November', 'December'];
           }
         },
 
@@ -806,10 +851,14 @@ Custom property | Description | Default
         _format: {
           type: Object,
           value: function () {
-            return {y: 'yyyy', m: 'mm', d: 'dd', s1: '/', s2: '/'};
+            return { y: 'yyyy', m: 'mm', d: 'dd', s1: '/', s2: '/' };
           }
         },
-
+        events: {
+          type: Array,
+          // notify:true,
+          // reflectToAttribute:true
+        }
       },
 
       observers: [
@@ -884,7 +933,7 @@ Custom property | Description | Default
           }
           // update to a new height for datepicker if paper-buttons present.
           this.$.dp.classList.add('with-buttons');
-        }else {
+        } else {
           this.$.dp.classList.remove('with-buttons');
         }
 
@@ -918,7 +967,6 @@ Custom property | Description | Default
         if (!window.Intl) {
           return;
         }
-
         // Compute total number of days for a month.
         function _computeTotalDaysOfMonth(_year, _month) {
           var _totalDaysOfMonth = new Date(_year, _month + 1, 0).getDate();
@@ -932,7 +980,7 @@ Custom property | Description | Default
         //  if _firstDayOfWeek is greater than 0 but less than 7.
         if (_firstDayOfWeek > 0 && _firstDayOfWeek < 7) {
           _start = _start - _firstDayOfWeek;
-          _start = _start < 0 ? 7  + _start : _start;
+          _start = _start < 0 ? 7 + _start : _start;
         }
 
         // Set up Intl.
@@ -944,7 +992,7 @@ Custom property | Description | Default
         var _formatter = window.Intl && window.Intl.DateTimeFormat
           ? new window.Intl.DateTimeFormat(_locale, { day: 'numeric' }).format
           : function dateTimeFormatShim(date) { return date.getDate() };
-        for (var i = 0, j = 1 - _start; i < 42; i++, j++) {
+        for (var i = 0, j = 1 - _start; i < 42; i++ , j++) {
           var _formatted = _formatter(new Date(_activeYear, _activeMonth, j));
           var _dateObj = { date: '', index: '' };
           if (i >= _start & i < _start + _totalDays) {
@@ -1027,7 +1075,7 @@ Custom property | Description | Default
             year: 'numeric'
           }).format(new Date(_activeYear, _activeMonth, 1));
           this.set('_activeMonthYear', _amy);
-          this.fire('_activeMonthYear',_amy);
+          this.fire('_activeMonthYear', _amy);
         }
       },
       // Re-compute short version of full date to show on the picker.
@@ -1074,9 +1122,9 @@ Custom property | Description | Default
         // a) _target.date is of type Number,
         // b) _target.classList.contains('is-disabled-day').
         if (_target &&
-            this._isNumber(_target.date) &&
-            !_target.classList.contains('is-disabled-day')
-          ) {
+          this._isNumber(_target.date) &&
+          !_target.classList.contains('is-disabled-day')
+        ) {
           // This will trigger _isChosenDaysOfMonth to recompute style.
           this.set('_chosenDaysOfMonth', _target.index);
 
@@ -1090,8 +1138,8 @@ Custom property | Description | Default
       _isToday: function (_item, _activeYear, _activeMonth) {
         var _now = new Date();
         var _isToday = _item === _now.getDate() &&
-                      _activeYear === _now.getFullYear() &&
-                      _activeMonth === _now.getMonth()
+          _activeYear === _now.getFullYear() &&
+          _activeMonth === _now.getMonth()
         return _isToday ? ' is-today' : '';
       },
       // Re-compute class when the item (day of month) is empty date & non-selectable.
@@ -1102,9 +1150,9 @@ Custom property | Description | Default
       _isChosenDaysOfMonth: function (_item, _selectedYear, _selectedMonth, _selectedDate) {
         // able to retain selected daysOfMonth even after navigating to other months.
         var _isChosenDaysOfMonth = this._chosenDaysOfMonth >= 0 &&
-                                   this._activeYear === _selectedYear &&
-                                   this._activeMonth === _selectedMonth &&
-                                   _item === _selectedDate;
+          this._activeYear === _selectedYear &&
+          this._activeMonth === _selectedMonth &&
+          _item === _selectedDate;
         return _isChosenDaysOfMonth ? ' chosen-days-of-month' : '';
       },
       // Re-compute class if the item (day of month) is a disable day.
@@ -1133,7 +1181,7 @@ Custom property | Description | Default
           if (_maxDateObj) {
             _isMoreThanMaxDate = _currentDate.getTime() > _maxDateObj.getTime();
           }
-          _isDisableDates = this.disableDates && this.disableDates.length && this.disableDates.some(function(date) {
+          _isDisableDates = this.disableDates && this.disableDates.length && this.disableDates.some(function (date) {
             var _dateObj = this._convertDateStringToDateObject(date);
             return _dateObj && _currentDate.getTime() === _dateObj.getTime();
           }.bind(this));
@@ -1217,7 +1265,7 @@ Custom property | Description | Default
           this.async(function () {
             _target.toPage._focusPhysicalItem(_focusableItem);
           }, 1);
-        }else {
+        } else {
           // When user navigate to calendar view from list view,
           // re-focus showSelectedYear.
           this.async(function () {
@@ -1232,7 +1280,7 @@ Custom property | Description | Default
 
         // Adjust center position when datepickers has no buttons and in landscape mode.
         if (!this.$.dp.classList.contains('with-buttons') &&
-            window.matchMedia('(orientation: landscape)').matches) {
+          window.matchMedia('(orientation: landscape)').matches) {
           _sli = Math.floor(_slh / (2100 - 1900 + 1) * (this._activeYear - 1900 - 1)) + 1;
         }
 
@@ -1252,7 +1300,7 @@ Custom property | Description | Default
           if (!this._isListRendered) {
             this._updateList();
             this.set('_isListRendered', !0);
-          }else {
+          } else {
             // When noAnimation is truthy, this will update the list scroller.
             if (this.noAnimation) {
               this._updateListScroller(this.$$('#listOfYears'));
@@ -1289,9 +1337,9 @@ Custom property | Description | Default
       _computeSeparateFormat: function (_format) {
         var re = /^(yyyy|yy|m{1,4}|d{1,2}|do)\W+(yyyy|yy|m{1,4}|d{1,2}|do)\W+(yyyy|yy|m{1,4}|d{1,2}|do)$/g;
         var m = re.exec(_format);
-				var _temp = {};
+        var _temp = {};
         var _tempArr = [];
-		    if (m !== null) {
+        if (m !== null) {
           _tempArr.push(m[1]);
           _tempArr.push(m[2]);
           _tempArr.push(m[3]);
@@ -1300,56 +1348,56 @@ Custom property | Description | Default
             matched = _tempArr[i];
 
             if (matched.indexOf('y') >= 0) {
-					    _temp.y = matched;
+              _temp.y = matched;
             } else if (matched.indexOf('m') >= 0) {
-					    _temp.m = matched;
+              _temp.m = matched;
             } else if (matched.indexOf('d') >= 0) {
-					    _temp.d = matched;
+              _temp.d = matched;
             }
           }
-		    }
+        }
 
         // Only set _format if the new format is valid.
         if ('d' in _temp && 'm' in _temp && 'y' in _temp) {
-				  this.set('_format', _temp);
+          this.set('_format', _temp);
         }
 
-				_temp = null;
+        _temp = null;
       },
 
       // bind the selected date so that it's ready to be read from the outside world.
       _bindSelectedFulldate: function (_selectedYear, _selectedMonth, _selectedDate, _format) {
-				// show long date (eg. Fri, May 12 2017 instead.
+        // show long date (eg. Fri, May 12 2017 instead.
         if (this.showLongDate) {
-          return this._computeShowLongDate(this.showLongDate,  this.locale, !0);
+          return this._computeShowLongDate(this.showLongDate, this.locale, !0);
         }
 
-				var _formattedYear  = _selectedYear;
-				var _formattedMonth  = this._monthNames[_selectedMonth];
-				var _formattedDate  = _selectedDate;
-				var _finalFormatted = this.format;
+        var _formattedYear = _selectedYear;
+        var _formattedMonth = this._monthNames[_selectedMonth];
+        var _formattedDate = _selectedDate;
+        var _finalFormatted = this.format;
         // compute new formatted year.
         if (_format.y === 'yy') {
-          _formattedYear = _selectedYear%100;
+          _formattedYear = _selectedYear % 100;
         }
         // compute new formatted month.
         if (_format.m === 'mmm') {
           _formattedMonth = _formattedMonth.slice(0, 3);
-        }else if (_format.m === 'mm') {
+        } else if (_format.m === 'mm') {
           _formattedMonth = this._padStart(_selectedMonth + 1, 2, '0');
-        }else if (_format.m === 'm') {
+        } else if (_format.m === 'm') {
           _formattedMonth = _selectedMonth + 1;
         }
         // compute new formatted date.
         if (_format.d === 'do') {
-          var _cardinalNumber = _formattedDate%10;
+          var _cardinalNumber = _formattedDate % 10;
           var _suffixOrdinal = _cardinalNumber > 3 ? 'th' :
             ['th', 'st', 'nd', 'rd'][_cardinalNumber];
           if (_formattedDate === 11 || _formattedDate == 12 || _formattedDate === 13) {
             _suffixOrdinal = 'th';
           }
           _formattedDate = _formattedDate + _suffixOrdinal;
-        }else if (_format.d === 'dd') {
+        } else if (_format.d === 'dd') {
           _formattedDate = this._padStart(_formattedDate, 2, '0');
         }
         // set formatted value with user defined symbols.
@@ -1357,7 +1405,7 @@ Custom property | Description | Default
         _finalFormatted = _finalFormatted.replace(_format.m, _formattedMonth);
         _finalFormatted = _finalFormatted.replace(_format.d, _formattedDate);
 
-				return _finalFormatted;
+        return _finalFormatted;
       },
       // method for content tag (eg. buttons).
       _updateBindDate: function (ev) {
@@ -1367,7 +1415,7 @@ Custom property | Description | Default
             this.set('_isSelectedDateConfirmed', !0);
           }
 
-          if (_type === 'transitionend' || this.noAnimation){
+          if (_type === 'transitionend' || this.noAnimation) {
             if (this._isSelectedDateConfirmed) {
               var _sy = this._selectedYear;
               var _sm = this._selectedMonth;
@@ -1420,7 +1468,7 @@ Custom property | Description | Default
           }
 
           this._setDate(_longDate);
-        }else {
+        } else {
           _longDate = this._bindSelectedFulldate(this._selectedYear,
             this._selectedMonth, _selectedDate, this._format);
 
@@ -1463,7 +1511,7 @@ Custom property | Description | Default
               var _newDate = new Date(_ds);
               if (_newDate.toString() === 'Invalid Date') {
                 return _res;
-              }else {
+              } else {
                 return {
                   valid: !0,
                   result: _newDate
@@ -1483,11 +1531,11 @@ Custom property | Description | Default
 
           if (_validWithRe1 === null && _validWithRe2 === null) {
             return _res;
-          }else {
+          } else {
             var _resultToDate = null;
             if (_validWithRe1 === null) {
               _resultToDate = new Date(_validWithRe2[1] + ' ' + _validWithRe2[2] + ' ' + _validWithRe2[3]);
-            }else if (_validWithRe2 === null) {
+            } else if (_validWithRe2 === null) {
               _resultToDate = new Date(_validWithRe1[1], _validWithRe1[2] - 1, _validWithRe1[3]);
             }
 
@@ -1519,7 +1567,7 @@ Custom property | Description | Default
           this.set('_selectedYear', _yy);
           this.set('_selectedMonth', _mm);
           this.set('_selectedDate', _vd.getDate());
-        }else {
+        } else {
           this.set('_selectedDate', this._selectedDate || new Date().getDate());
           this._computeShowLongDate(_showLongDate, this.locale);
           this._setInvalidDate(!0);
@@ -1589,7 +1637,7 @@ Custom property | Description | Default
           this.toggleClass(_themes[0], !1, this);
           this.toggleClass(_themes[1], !1, this);
           this.toggleClass(_theme, !0, this);
-        }else {
+        } else {
           this.toggleClass('dark-theme', !1, this);
           this.toggleClass('light-theme', !1, this);
           this.toggleClass('goog-theme', !1, this);
@@ -1614,6 +1662,44 @@ Custom property | Description | Default
           '--paper-button-ink-color': _colorCode,
         });
       },
+
+      _hasEvent: function (date, _activeYear, _activeMonth, events) {
+        if (!date || !events) return;
+        let event = false;
+        events.map(function (element) {
+          // console.log("index",new Date(element.begin_at).getDate()==date);
+          // console.log("index",element.begin_at);
+          // if(date!=1) return ;
+          let dateMonth = moment().year(_activeYear).month(_activeMonth).date(date);
+          let begin_at = moment(element.begin_at);
+          let end_at = element.end_at && moment(element.end_at) || begin_at;
+
+          // console.log("dateMonth", dateMonth.format("YYYY-MM-DD"));
+          // console.log("begin", begin_at.format("YYYY-MM-DD"));
+          // console.log("end",end_at.format("YYYY-MM-DD"));
+          // console.log("isSame", dateMonth.isSame(begin_at,'day'));
+          // console.log("isBetween",  dateMonth.isBetween(begin_at, end_at,'day'));
+          //BUG no Weby
+          // if(end_at.isBefore(begin_at)) return;
+          
+
+          if(dateMonth.isSame(begin_at,'day') || dateMonth.isBetween(begin_at, end_at,'day') ||
+            dateMonth.isSame(end_at,'day')){
+            // console.log("ok");
+            event = true;
+            return;
+          }
+          
+          // console.log("pp",dateMonth.diff(begin_at, 'days') >=1 || dateMonth.diff(end_at, 'days') >=1)
+          // if (new Date(element.begin_at).getDate() == date) {
+          //   event = true;
+          //   return;
+          // }
+        }, this);
+        return event ? "dot" : ""
+        // console.log("index",date);
+        // console.log("events",events);
+      }
 
       // TODO: To add GIF to README.md.
       // TODO: To migrate 2nd datepicker to the same month when minDate is set on the 1st datepicker.
