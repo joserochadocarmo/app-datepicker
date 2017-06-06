@@ -1667,38 +1667,18 @@ Custom property | Description | Default
         if (!date || !events) return;
         let event = false;
         events.map(function (element) {
-          // console.log("index",new Date(element.begin_at).getDate()==date);
-          // console.log("index",element.begin_at);
-          // if(date!=1) return ;
           let dateMonth = moment().year(this._activeYear).month(this._activeMonth).date(date);
           let begin_at = moment(element.begin_at);
           let end_at = element.end_at && moment(element.end_at) || begin_at;
 
-          // console.log("dateMonth", dateMonth.format("YYYY-MM-DD"));
-          // console.log("begin", begin_at.format("YYYY-MM-DD"));
-          // console.log("end",end_at.format("YYYY-MM-DD"));
-          // console.log("isSame", dateMonth.isSame(begin_at,'day'));
-          // console.log("isBetween",  dateMonth.isBetween(begin_at, end_at,'day'));
-          //BUG no Weby
-          // if(end_at.isBefore(begin_at)) return;
-          
-
           if(dateMonth.isSame(begin_at,'day') || dateMonth.isBetween(begin_at, end_at,'day') ||
-            dateMonth.isSame(end_at,'day')){
-            // console.log("ok");
+            dateMonth.isSame(end_at,'day')){            
             event = true;
             return;
           }
           
-          // console.log("pp",dateMonth.diff(begin_at, 'days') >=1 || dateMonth.diff(end_at, 'days') >=1)
-          // if (new Date(element.begin_at).getDate() == date) {
-          //   event = true;
-          //   return;
-          // }
         }, this);
         return event ? "dot" : ""
-        // console.log("index",date);
-        // console.log("events",events);
       }
 
       // TODO: To add GIF to README.md.
