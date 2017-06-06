@@ -612,7 +612,7 @@ Custom property | Description | Default
                 aria-disabled$="[[_shouldAriaDisabled(index, firstDayOfWeek, minDate, maxDate, item.index, _shiftedDisableDays.*, disableDates.*)]]"
                 aria-label$=[[item.index]]>
                 [[item.date]]
-                <span class$="event-[[_hasEvent(item.date,_activeYear, _activeMonth,events)]]"></span>
+                <span class$="event-[[_hasEvent(item.date,events)]]"></span>
               </div>
             </template>
           </div>
@@ -1663,14 +1663,14 @@ Custom property | Description | Default
         });
       },
 
-      _hasEvent: function (date, _activeYear, _activeMonth, events) {
+      _hasEvent: function (date, events) {
         if (!date || !events) return;
         let event = false;
         events.map(function (element) {
           // console.log("index",new Date(element.begin_at).getDate()==date);
           // console.log("index",element.begin_at);
           // if(date!=1) return ;
-          let dateMonth = moment().year(_activeYear).month(_activeMonth).date(date);
+          let dateMonth = moment().year(this._activeYear).month(this._activeMonth).date(date);
           let begin_at = moment(element.begin_at);
           let end_at = element.end_at && moment(element.end_at) || begin_at;
 
