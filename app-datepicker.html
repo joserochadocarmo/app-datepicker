@@ -557,21 +557,28 @@ Custom property | Description | Default
       }
 
       .event-dot {
-        margin: 3px 13px;
+        margin: 3px 13.5px;
         width: 5px;
         height: 5px;
         display: block;
         border-radius: 50%;
-        background-color: var(--paper-calendar-event-background, rgb(255, 152, 0));
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
       }
 
+      .init{
+        background-color: var(--paper-calendar-event-background, rgb(255, 152, 0));
+      }
+
+      .end{
+        background-color: var(--paper-calendar-event-background, lightgray);
+      }
+
       @media (max-width: 600px) {
         .event-dot {
-          margin: 4px 15px;
+          margin: 4px 15.8px;
         }
       }
     </style>
@@ -1665,20 +1672,26 @@ Custom property | Description | Default
 
       _hasEvent: function (date, events) {
         if (!date || !events) return;
-        let event = false;
+        let event = "";
+        var hasEventInitMap = new Map();
         events.map(function (element) {
           let dateMonth = moment().year(this._activeYear).month(this._activeMonth).date(date);
           let begin_at = moment(element.begin_at);
           let end_at = element.end_at && moment(element.end_at) || begin_at;
-
+          
           if(dateMonth.isSame(begin_at,'day') || dateMonth.isBetween(begin_at, end_at,'day') ||
             dateMonth.isSame(end_at,'day')){            
-            event = true;
+            event = dateMonth.isSame(begin_at,'day')  ? "dot init": "dot end";            
+
+            if(hasEventInitMap.get(dateMonth.toString())=="dot init" && event=="dot end") {
+              event = "dot init";
+            }
+            hasEventInitMap.set(dateMonth.toString(),event);
             return;
           }
           
         }, this);
-        return event ? "dot" : ""
+        return event
       }
 
       // TODO: To add GIF to README.md.
