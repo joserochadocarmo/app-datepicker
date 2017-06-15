@@ -612,7 +612,7 @@ Custom property | Description | Default
             </template>
           </div>
 
-          <div id="daysOfMonth" class="days-of-month" on-tap="_chooseDaysOfMonth">
+          <div id="daysOfMonth" class="days-of-month" on-tap="_chooseDaysOfMonth" on-keydown="checkForEnter">
             <template is="dom-repeat" items="[[_daysOfMonth]]" index-as="index" strip-whitespace>
               <div class$="each-days-of-month[[_isToday(item.index, _activeYear, _activeMonth)]][[_isEmptyDate(item.index)]][[_isChosenDaysOfMonth(item.index, _selectedYear, _selectedMonth, _selectedDate)]][[_isDisableDays(index, firstDayOfWeek, minDate, maxDate, item.index, _shiftedDisableDays.*, disableDates.*)]]"
                 index="[[index]]" date="[[item.index]]" tabindex$="[[_shouldTabIndex(index, firstDayOfWeek, minDate, maxDate, item.index, _shiftedDisableDays.*, disableDates.*)]]"
@@ -1681,17 +1681,28 @@ Custom property | Description | Default
           
           if(dateMonth.isSame(begin_at,'day') || dateMonth.isBetween(begin_at, end_at,'day') ||
             dateMonth.isSame(end_at,'day')){            
-            event = dateMonth.isSame(begin_at,'day')  ? "dot init": "dot end";            
+        
+            event = dateMonth.isSame(begin_at,'day')  ? "dot init": "dot end";
+            
+            // console.log(dateMonth.toString());
+            // console.log(hasEventInitMap.get(dateMonth.toString()));
 
             if(hasEventInitMap.get(dateMonth.toString())=="dot init" && event=="dot end") {
               event = "dot init";
             }
+
             hasEventInitMap.set(dateMonth.toString(),event);
             return;
           }
           
         }, this);
         return event
+      },
+
+      checkForEnter: function(e){
+        if (e.keyCode === 13) {
+          this._chooseDaysOfMonth(e)
+        }
       }
 
       // TODO: To add GIF to README.md.
