@@ -597,11 +597,11 @@ Custom property | Description | Default
         exit-animation="[[pageExitAnimation]]" on-neon-animation-finish="_onAnimationFinish">
         <div class="calendar-view" view="calendar">
           <div class="navigator">
-            <paper-icon-button icon="datepicker:chevron-left" on-tap="_decrementMonth" noink="[[noAnimation]]"></paper-icon-button>
+            <paper-icon-button icon="datepicker:chevron-left" on-tap="_decrementMonth" noink="[[noAnimation]]" alt="mês anterior"></paper-icon-button>
             <div id="navMonthYear" class="nav-month-year">
               [[_activeMonthYear]]
             </div>
-            <paper-icon-button icon="datepicker:chevron-right" on-tap="_incrementMonth" noink="[[noAnimation]]"></paper-icon-button>
+            <paper-icon-button icon="datepicker:chevron-right" on-tap="_incrementMonth" noink="[[noAnimation]]" alt="próximo mês"></paper-icon-button>
           </div>
 
           <div id="daysOfWeek" class="days-of-week">
