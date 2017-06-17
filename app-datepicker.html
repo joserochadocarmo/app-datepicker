@@ -1679,18 +1679,11 @@ Custom property | Description | Default
           let begin_at = moment(element.begin_at);
           let end_at = element.end_at && moment(element.end_at) || begin_at;
           
-          if(dateMonth.isSame(begin_at,'day') || dateMonth.isBetween(begin_at, end_at,'day') ||
-            dateMonth.isSame(end_at,'day')){            
-        
+          if(dateMonth.isBetween(begin_at, end_at,'day','[]')){            
             event = dateMonth.isSame(begin_at,'day')  ? "dot init": "dot end";
-            
-            // console.log(dateMonth.toString());
-            // console.log(hasEventInitMap.get(dateMonth.toString()));
-
             if(hasEventInitMap.get(dateMonth.toString())=="dot init" && event=="dot end") {
               event = "dot init";
             }
-
             hasEventInitMap.set(dateMonth.toString(),event);
             return;
           }
