@@ -1675,7 +1675,7 @@ Custom property | Description | Default
         let event = "";
         var hasEventInitMap = new Map();
         events.map(function (element) {
-          let dateMonth = moment().year(this._activeYear).month(this._activeMonth).date(date);
+          let dateMonth = moment().year(this._activeYear).month(this._activeMonth).date(date).hour(0).minutes(0).seconds(0).millisecond(0);
           let begin_at = moment(element.begin_at);
           let end_at = element.end_at && moment(element.end_at) || begin_at;
           
